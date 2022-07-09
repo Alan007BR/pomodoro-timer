@@ -4,17 +4,14 @@ import '../../global.css';
 import { CircularProgressbar, buildStyles } from 'react-circular-progressbar';
 import 'react-circular-progressbar/dist/styles.css';
 import { Disclosure, Switch, Transition } from '@headlessui/react'
-import ReactSlider from 'react-slider';
 import { ContextSettings } from '../contexts/ContextSettings';
 import CreateContext from '../contexts/CreateContext';
 
 export function PomodoroTimer(){
     const brand = '#A0AEDD';
     const breakcolor = '#F9C6CF';
-    const stopColor = '#A0AEDD';
 
     const contextProps = useContext(CreateContext);
-
     const [secondsLeft, setSecondsLeft] = useState(0);
     const [breakMinutes, setBreakMinutes] = useState(10);
     const [isPaused, setIsPaused] = useState(true);
@@ -23,8 +20,6 @@ export function PomodoroTimer(){
     const secondsLeftRef = useRef(secondsLeft);
     const isPausedRef = useRef(isPaused);
     const modeRef = useRef(mode);
-
-
 
     function tick(){
         secondsLeftRef.current--;
@@ -53,7 +48,6 @@ export function PomodoroTimer(){
                 }
                 if(secondsLeftRef.current === 0) {
                     return changeMode()
-                    setColors()   
                 }
                 tick();
             }, 1000);
@@ -76,35 +70,32 @@ export function PomodoroTimer(){
                 pathColor:mode == 'start' ? brand : breakcolor,
                 trailColor: '#F6F5F5',
             })}/>
-
-            {/*<h1 className="text-[5rem] text-time">50:00</h1>}*/}
-
             </div>
             
             <div className="flex items-center">
-         <button className="pr-4">
-             {!isPaused ? <StopIcon className="iconStop w-16 h-16 text-time" onClick={() => { setIsPaused(true); isPausedRef.current = true;}} /> :  
-             <PlayIcon className="w-16 h-16 text-time" onClick={() => { setIsPaused(false); isPausedRef.current = false;}}/> }
-         </button>
+                <button className="pr-4">
+                    {!isPaused ? <StopIcon className="iconStop w-16 h-16 text-time" onClick={() => { setIsPaused(true); isPausedRef.current = true;}} /> :  
+                    <PlayIcon className="w-16 h-16 text-time" onClick={() => { setIsPaused(false); isPausedRef.current = false;}}/> }
+                </button>
 
-        <Disclosure>
-            <Disclosure.Button className="bg-time rounded-xl">
-                    <CogIcon className="w-12 h-12 text-white"/>
-            </Disclosure.Button>
-            
-            <Transition 
-        enter="transition duration-100 ease-out"
-        enterFrom="transform scale-95 opacity-0"
-        enterTo="transform scale-100 opacity-100"
-        leave="transition duration-75 ease-out"
-        leaveFrom="transform scale-100 opacity-100"
-        leaveTo="transform scale-95 opacity-0">
-            <Disclosure.Panel className="p-2">
-                <ContextSettings/>
-            </Disclosure.Panel>
-            </Transition>
-        </Disclosure>
-            </div>
+                <Disclosure>
+                    <Disclosure.Button className="bg-time rounded-xl">
+                            <CogIcon className="w-12 h-12 text-white"/>
+                    </Disclosure.Button>
+                    
+                    <Transition 
+                    enter="transition duration-100 ease-out"
+                    enterFrom="transform scale-95 opacity-0"
+                    enterTo="transform scale-100 opacity-100"
+                    leave="transition duration-75 ease-out"
+                    leaveFrom="transform scale-100 opacity-100"
+                    leaveTo="transform scale-95 opacity-0">
+                        <Disclosure.Panel className="p-2">
+                            <ContextSettings/>
+                        </Disclosure.Panel>
+                    </Transition>
+                </Disclosure>
+                    </div>
 
         </div>
     )
