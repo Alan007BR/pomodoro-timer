@@ -1,0 +1,15 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+@import url('https://fonts.googleapis.com/css2?family=Roboto:wght@300&display=swap');
+
+body {
+    @apply bg-brand;
+    font-family: 'Roboto', sans-serif;
+}
+
+
+.thumb {
+    @apply bg-time w-7 h-7 rounded-lg;
+    cursor: pointer;
+}
