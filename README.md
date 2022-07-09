@@ -1,4 +1,4 @@
-# Repository List App
+# Pomodoro Timer
 
 > A simple Pomodoro Timer in ReactJs.
 
